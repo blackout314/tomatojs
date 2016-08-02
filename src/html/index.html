@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tomato Timer</title>
+    <link rel="stylesheet" href="screen.css" charset="utf-8" media="screen" />
+    <script src="js/libs/jquery-1.6-min.js" type="text/javascript"></script>
+    <script src="js/libs/underscore-1.1.6-min.js" type="text/javascript"></script>
+    <script src="js/libs/backbone-0.3.3-min.js" type="text/javascript"></script>
+    <script src="js/libs/backbone-localstorage.js" type="text/javascript"></script>
+    <script src="js/libs/icanhaz-0.9-min.js" type="text/javascript"></script>
+
+    <script src="js/tomato.js" type="text/javascript"></script>
+    <script src="js/todolist.js" type="text/javascript"></script>
+
+    <script id="clockContent" type="text/html">
+        {{#task}}
+        <span id="current-task">{{ task }}</span>
+        <span id="tomato-counts">{{ usedTomato }} / {{ estimatedTomato }}</span>
+        <span id="clock-panel">{{ time }}</span>
+        <div id="controls">
+            <button id="clock-switch">{{ clockSwitchLabel }}</button>
+            {{#isTimeUp}}
+                <button id="ring-switch">Stop Ring</button>
+            {{/isTimeUp}}
+        </div>
+        {{/task}}
+
+        {{^task}}
+            <span id="current-task">No task selected</span>
+        {{/task}}
+    </script>
+
+    <script id="todoItem" type="text/html">
+        <li id="{{ htmlId }}">
+            {{#completed}}
+            <input type="checkbox" class="complete-todo" checked="checked" />
+            <span class="todo-description completed">{{ description }}</span>
+            {{/completed}}
+
+            {{^completed}}
+            <input type="checkbox" class="complete-todo" />
+            <span class="todo-description">{{ description }}</span>
+            {{/completed}}
+
+            <span class="remove-todo"></span>
+        </li>
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            var tomato = new Tomato();
+            var tomatoView = new TomatoView({
+				model: tomato,
+				el: $('#clock'),
+				ring: document.getElementById('alarm')
+			});
+            var todoList = new TodoList({tomatoModel: tomato});
+            var todoListView = new TodoListView({model: todoList, el: $('#todos')});
+            tomatoView.render();
+        });
+    </script>
+</head>
+<body>
+    <!-- sound file is from http://soundbible.com/1550-Fire-Alarm.html -->
+    <audio style="display: none;" id="alarm" preload="true" src="alarm.ogg"></audio>
+    <div id="page">
+    	<div id="clock">
+    	</div>
+    	<div id="todos">
+    		<input id="todo-description" type="text" placeholder="Description"/>
+    		<input id="estimated-tomato" type="text" placeholder="Estimated Tomato"/>
+    		<button id="add-todo">Add</button>
+            <ul id="todo-list"></ul>
+    	</div>
+    </div>
+</body>
+</html>

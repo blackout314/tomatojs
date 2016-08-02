@@ -1,0 +1,124 @@
+/* layout and color scheme inspired by http://www.thingler.com/css/thingler.css */
+/* box-shadow style is from http://www.v2ex.com */
+/* the style of .remove-todo is from http://documentcloud.github.com/backbone/examples/todos/todos.css */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+    color: #3d4a5c;
+    font-family: "Optima LT", Helvetica, "Microsoft Yahei", sans-serif;
+    font-size: 16px;
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    color: #fafafa;
+    background-color: #3d4a5c;
+}
+
+button:hover {
+    color: #3d4a5c;
+    background-color: #fefec1;
+    cursor: pointer;
+}
+
+input[type=text] {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+input[type=text]:focus {
+    outline: none;
+    border: 1px solid rgba(128, 128, 160, 0.6);
+    box-shadow: 0px 0px 5px rgba(128, 128, 160, 0.5);
+}
+
+#page {
+    margin: 0 auto;
+    width: 700px;
+}
+
+#clock {
+    margin-top: 90px;
+}
+
+#current-task, #clock-panel {
+    font-size: 2.5em;
+}
+
+#tomato-counts {
+    font-family: Georgia, serif;
+    font-size: 2em;
+    margin-left: 1em;
+}
+
+#clock-panel {
+    float: right;
+}
+
+#controls {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#todo-description {
+    width: 65%;
+}
+
+#estimated-tomato {
+    width: 20%;
+}
+
+#todos {
+    margin-top: 10px;
+}
+
+ul#todo-list {
+    padding-left: 0;
+    list-style-type: none;
+    font-family: Georgia, serif;
+    font-size: 1.3em;
+}
+
+ul#todo-list > li {
+    display: block;
+    padding: 0.7em 0.7em 0.7em 0;
+    border-bottom: 1px dotted #ddd;
+}
+
+ul#todo-list > li:hover {
+    background-color: #fefef1;
+}
+
+ul#todo-list > li.active {
+    background-color: #fefec1;
+}
+
+ul#todo-list > li .todo-description {
+    margin-left: 1em;
+}
+
+ul#todo-list > li .completed {
+    color: #aaa;
+    text-decoration: line-through;
+}
+
+ul#todo-list > li .remove-todo {
+    display: none;
+    margin-top: 3px;
+    float: right;
+    width: 20px;
+    height: 20px;
+    background: url(destroy.png) no-repeat 0 0;
+    cursor: pointer;
+}
+
+ul#todo-list > li:hover .remove-todo {
+    display: block;
+}
+
+ul#todo-list > li .remove-todo:hover {
+    background-position: 0 -20px;
+}
